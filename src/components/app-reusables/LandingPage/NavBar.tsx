@@ -9,7 +9,7 @@ const NavBar = () => {
     const secondPart = data.filter(item => item.id === 6 || item.id === 7);
 
     return (
-        <div className='bg-primary h-[calc(100vh-70px)] w-[136px] fixed py-3'>
+        <div className='bg-primary h-[calc(100vh-70px)] w-[136px] fixed py-3 shadow-lg drop-shadow-lg'>
 
             <nav className='text-white text-sm h-full'>
                 <ul className="flex flex-col flex-1 justify-between h-full">

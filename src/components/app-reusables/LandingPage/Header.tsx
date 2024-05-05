@@ -10,7 +10,7 @@ import { DropdownMenuModal } from './NotificationModal';
 
 const Header = () => {
   return (
-    <div className='flex justify-between items-center bg-primary px-5 py-3 fixed w-full z-30'>
+    <div className='flex justify-between items-center bg-primary px-5 py-3 fixed w-full z-30 shadow-lg drop-shadow-lg'>
       <h1 className='text-3xl text-white font-extrabold'>Logo</h1>
       <div className='relative w-1/3'>
         <Input type='text' placeholder='Search for NFTs, Collection or users' className='bg-buttons border-0 outline-0 pl-10 w-full focus:border-0 focus:outline-0 active:border-0 active:outline-0' />

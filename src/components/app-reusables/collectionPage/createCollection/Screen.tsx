@@ -174,10 +174,10 @@ const Screen = () => {
                   </FormItem>
                 )}
               />
-            </form>
               <Button className="mt-4 hover:bg-gold hover:text-black" type="submit">
                 {isPending ? "processing" : "Create listing" }
               </Button>
+            </form>
           </Form>
         </div>
 

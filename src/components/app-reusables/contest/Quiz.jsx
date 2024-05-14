@@ -1,10 +1,17 @@
+"use client"
+
 import React, { useState, useEffect } from "react";
 import shuffle from "lodash/shuffle";
 import Question from "./Question";
 import Timer from "./Timer";
 import { Button } from "@/components/ui/button";
+import { useRouter } from "next/navigation";
 
 const Quiz = ({ data }) => {
+
+
+  const router = useRouter()
+
   const [questions, setQuestions] = useState([]);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [score, setScore] = useState(0);
@@ -80,15 +87,15 @@ const Quiz = ({ data }) => {
           <p>Your score: {score}</p>
 
           <Button
-            className="bg-purple"
-            onClick={() => router.push("/contest/leaderboard")}
+            className="bg-purple w-fit"
+            onClick={() => router.push("/contest")}
           >
-           Check leaderboard
+           Go home
           </Button>
         </div>
       ) : (
         <div className="w-full grid gap-x-5">
-          <Timer timeLimit={1800} handleTimeUp={handleTimeUp} />
+          <Timer timeLimit={120} handleTimeUp={handleTimeUp} />
           <div className="bg-gray-200 h-4 mb-4 w-5/6">
             <div
               className="bg-green-500 h-full w-4/5"

@@ -1,22 +1,40 @@
+"use client"
 
-import React from 'react';
+
+import React, { useEffect, useState } from 'react';
 import Quiz from '@/components/app-reusables/contest/Quiz';
-import { result } from 'lodash';
+
 
 
 const Page = () => {
 
-  const fetchQuiz =  async ()=>{
+  const [data, setData] = useState()
 
-   const response = await fetch("/api/quiz")
-   const result = await response.json()
+  const fetchQuiz = async () => {
+
+    const response = await fetch("/api/quiz")
+    const result = await response.json()
+
+    console.log(result.data)
+    setData(result.data)
 
   }
 
-  
+  useEffect(() => {
+
+    fetchQuiz()
+
+  }, [])
 
 
-  return <Quiz data={result?.data}  />;
+
+
+
+  return <div className="text-white">
+
+    <Quiz data={data} />
+
+  </div>
 };
 
 export default Page;

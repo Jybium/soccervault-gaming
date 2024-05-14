@@ -186,11 +186,11 @@ const Page = () => {
         <main className='text-white grid gap-y-10'>
 
 
-            <div className="flex justify-end">
+            {/* <div className="flex justify-end">
 
                 <Button className='bg-purple' onClick={() => router.push('/contest/create')}>Create</Button>
 
-            </div>
+            </div> */}
 
 
             <div className="text-center grid gap-y-3"><h1 className='text-3xl font-extrabold' style={playfair_display.style}>Join and Play</h1><p className="font-thin">Soccer Vault challenges are exclusive competitions that revolve around legendary football moments, trophies, and player items.</p></div>

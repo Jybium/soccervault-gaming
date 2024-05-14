@@ -20,7 +20,7 @@ const Timer = ({ timeLimit, handleTimeUp }) => {
         }
     }, [timeLeft]);
 
-    return <div>{timeLeft} seconds left</div>;
+    return <div className='mt-2'>{timeLeft} seconds left</div>;
 };
 
 export default Timer;

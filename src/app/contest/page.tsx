@@ -21,9 +21,10 @@ const Page = () => {
         <main className='text-white grid gap-y-10'>
 
 
-            <div className="flex justify-end">
+            <div className="flex gap-x-6 justify-end">
 
                 <Button className='bg-purple' onClick={() => router.push('/contest/create')}>Create</Button>
+                <Button className='bg-purple' onClick={() => router.push('/contest/play')}>Play</Button>
 
             </div>
 

@@ -3,6 +3,7 @@ import { Montserrat } from 'next/font/google'
 import './globals.css'
 import Header from '@/components/app-reusables/LandingPage/Header'
 import NavBar from '@/components/app-reusables/LandingPage/NavBar'
+import { ModalProvider } from './stores/context/modal'
 
 
 const montserrat = Montserrat({ subsets: ['latin'], weight: "400" })
@@ -18,19 +19,22 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className='bg-primary'>
-      <body className={montserrat.className} style={{backgroundImage: "#333651"}}>
+    <html lang="en" className='background'>
+      <body className={montserrat.className} style={{ backgroundImage: "#333651" }}>
         <Header />
 
-        <section className='flex justify-between pt-[70px]'>
+        <section className='relative flex justify-between pt-[70px]'>
           <aside>
             <NavBar />
           </aside>
-          <main className='h-full bg-backgroun bg-cover bg-no-repeat overflow-y-auto w-[calc(100%-140px)] ml-auto px-5'>
-            {children}
-          </main>
+          <ModalProvider>
+            <main className='relative h-full bg-backgroun bg-cover bg-no-repeat overflow-y-auto w-[calc(100%-140px)] ml-auto px-5 mt-5'>
+              {children}
+            </main>
+          </ModalProvider>
 
         </section>
+
       </body>
     </html>
   )

@@ -1,6 +1,6 @@
 "use client"
 
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Playfair_Display } from 'next/font/google'
 import { useRouter } from 'next/navigation'
 import aboutContest from "@/app/constants/IntroContest"
@@ -8,6 +8,9 @@ import Contest from "@/app/constants/contest"
 import IntroCard from '@/components/app-reusables/contest/IntroCard'
 import ContestCard from '@/components/app-reusables/contest/ContestCard'
 import { Button } from '@/components/ui/button'
+import { toast } from 'sonner'
+import { GAMING_CONTRACT_ADDRESS, GAMING_NFT_ABI } from '@/config'
+import getContract from '@/lib/contract'
 
 
 const playfair_display = Playfair_Display({ subsets: ['latin'], weight: "400" })
@@ -16,6 +19,41 @@ const playfair_display = Playfair_Display({ subsets: ['latin'], weight: "400" })
 const Page = () => {
 
     const router = useRouter()
+
+    const [listing, setListing] = useState()
+
+    const getListings = async () => {
+        const contract = await getContract(GAMING_CONTRACT_ADDRESS, GAMING_NFT_ABI);
+
+        try {
+            // get a listing
+            const approvedNFT = await contract.getListedGames();
+
+            console.log('Listed games:', approvedNFT); 
+            setListing(approvedNFT); 
+            
+            console.log('Listed games:', listing); 
+
+        } catch (error) {
+            console.error('Error fetching games:', error);
+            toast.error("Error fetching games");
+        }
+    };
+
+
+
+    useEffect(() => {
+
+        getListings()
+
+    }, [])
+
+    useEffect(() => {
+        if (listing) {
+            console.log('Listed games:', listing);
+        }
+    }, [listing]);
+
 
     return (
         <main className='text-white grid gap-y-10'>
@@ -40,6 +78,7 @@ const Page = () => {
 
             <div className="flex items-center justify-center gap-x-5">
 
+                {/* {listing.} */}
                 {Contest.map((item) => <ContestCard text={item.text} description={item.description} icon={item.icon} id={item.id} key={item.id} />)}
 
             </div>

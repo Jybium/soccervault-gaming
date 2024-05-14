@@ -42,8 +42,8 @@ const formSchema = z.object({
     name: z.string().min(2, {
         message: "Name must be at least 2 characters.",
     }),
-    threshold: z.number(),
-    duration: z.string(),
+    threshold: z.string(),
+    durationInSeconds: z.string(),
     tokenId: z.string()
 })
 
@@ -59,22 +59,23 @@ const Page = () => {
         resolver: zodResolver(formSchema),
         defaultValues: {
             name: "",
-            threshold: 0,
-            duration: "",
+            threshold: "",
+            durationInSeconds: "",
             tokenId: ""
         },
     })
 
 
 
-    const createGameListing = async () => {
+    const createGameListing = async (data:any) => {
 
         const contract: any = await getContract(GAMING_CONTRACT_ADDRESS, GAMING_NFT_ABI);
+        const nftaddress = "0x63cEd545f1Ee372EB59790AF6D80db814BD43AFE"
         
 
         try {
             // Create the listing
-            const transaction = await contract.createListing();
+            const transaction = await contract.createListing(data.name, data.threshold,data.tokenId, data.durationInSeconds, nftaddress);
 
             const result = await transaction.wait();
 
@@ -115,6 +116,8 @@ const Page = () => {
             toast.error("Error fetching NFTs");
         }
     };
+
+
     const getApprovedListing = async () => {
         const contract = await getContract(GAMING_CONTRACT_ADDRESS, GAMING_NFT_ABI);
         
@@ -176,6 +179,8 @@ const Page = () => {
 
 
     function onSubmit(values: z.infer<typeof formSchema>) {
+
+        createGameListing(values)
         // Do something with the form values.
         // ✅ This will be type-safe and validated.
         console.log(values)
@@ -223,7 +228,7 @@ const Page = () => {
                             name="threshold"
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel>Username</FormLabel>
+                                    <FormLabel>Context threshold</FormLabel>
                                     <FormControl>
                                         <Input maxLength={2} placeholder="10" {...field} />
                                     </FormControl>
@@ -236,7 +241,7 @@ const Page = () => {
                             />
                         <FormField
                             control={form.control}
-                            name="duration"
+                            name="durationInSeconds"
                             render={({ field }) => (
                                 <FormItem>
                                     <FormLabel>Contest duration</FormLabel>
@@ -262,7 +267,7 @@ const Page = () => {
                             name="tokenId"
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel>Contest reward</FormLabel>
+                                    <FormLabel>Contest reward (Token Id)</FormLabel>
                                     <Select onValueChange={field.onChange} defaultValue={field.value}>
                                         <FormControl>
                                             <SelectTrigger>

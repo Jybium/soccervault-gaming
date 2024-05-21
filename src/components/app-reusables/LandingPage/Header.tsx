@@ -11,9 +11,12 @@ import { PhantomWalletAdapter } from '@solana/wallet-adapter-phantom';
 import WalletConnectProvider from '@walletconnect/web3-provider';
 import { DialogCloseButton } from './ConnectWalletModal';
 import { DropdownMenuModal } from './NotificationModal';
+import { useModal } from "@/app/stores/context/modal";
 
 
 const Header = () => {
+
+  const { setWalletAddress } = useModal();
 
   const [connectedWallet, setConnectedWallet] = useState<ethers.Signer | PhantomWalletAdapter | null>(null);
 
@@ -28,6 +31,7 @@ const Header = () => {
     if (isEthereumSigner(wallet)) {
       wallet.getAddress().then((address) => {
         console.log('Connected Ethereum wallet address:', address);
+        setWalletAddress(address)
       }).catch((error) => {
         console.error('Failed to get Ethereum wallet address:', error);
       });

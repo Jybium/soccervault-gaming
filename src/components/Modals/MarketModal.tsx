@@ -1,3 +1,6 @@
+"use client"
+
+
 import React from 'react'
 import { Button } from "@/components/ui/button"
 import {
@@ -5,19 +8,21 @@ import {
   DialogContent,
   DialogTrigger,
 } from "@/components/ui/dialog"
+import Image from 'next/image'
 
 
-const MarketModal = () => {
+const MarketModal = ({image, text, name, id}:{image: string, text: string, name: string, id:number}) => {
 
   return (
     <div>
       <Dialog>
 
         <DialogTrigger asChild>
-          <div className='text-center grid gap-y-1 w-fit font-bold'>
-            <p className='bg-buttons h-[13rem] w-[13rem] rounded-lg'></p>
-            <p>Iconic Jerseys</p>
-            <p className='text-gold font-thin '>#0001</p>
+          <div className='text-center grid gap-y-1 w-full font-bold'>
+            {/* <p className='bg-buttons h-[13rem] w-[13rem] rounded-lg'></p> */}
+            <Image src={image} alt="" width={208} height={208} className='block object-cover h-full w-full rounded-xl' />
+            <p>{name}</p>
+            <p className='text-gold font-thin '>{text}</p>
           </div>
         </DialogTrigger>
 
@@ -26,7 +31,12 @@ const MarketModal = () => {
           <section className='flex justify-between items-center gap-4 h-full w-full'>
 
             <div className="relative h-full w-full">
-              <p className='bg-blue-500 relative h-full w-full rounded-md'></p>
+              <p className='bg-blue-500 relative h-full w-full rounded-md'>
+
+              <Image src={image} alt="" width={208} height={208} className='h-full w-full object-cover p-2 rounded-md' />
+              </p>
+
+
               <div className="w-4/6 mx-auto absolute bottom-4 left-[15%]">
                 <Button className='bg-deepGold text-white w-full font-bold'>
                   Buy now
@@ -35,7 +45,7 @@ const MarketModal = () => {
             </div>
 
             <div className="h-full w-full flex flex-col justify-evenly text-white pr-6">
-              <p className=''>Iconic Jerseys: Maradona’s Magic '86</p>
+              <p className=''>Iconic Jerseys: {name}</p>
 
               <div className='grid gap-3'>
                 <h1 className='font-bold'>Triats</h1>

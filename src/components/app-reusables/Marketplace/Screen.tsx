@@ -1,8 +1,8 @@
-
 "use client"
 
 
 import React, { useState } from 'react'
+import axios from 'axios'
 import { Playfair_Display } from 'next/font/google'
 import {
     Form,
@@ -30,6 +30,20 @@ import Image from 'next/image';
 import data, { days } from "@/app/constants/collection"
 import Card from './Card';
 import MarketModal from '@/components/Modals/MarketModal';
+import {jerseyItems, trophyItems, momentItems} from "@/app/constants/marketPlace"
+
+
+type Item = {
+    id: number;
+    name: string;
+    title: string;
+    imageURL: string;
+    category: string;
+}
+
+interface MarketProps {
+    data: 'jersey' | 'trophy' | 'moment';
+}
 
 
 
@@ -38,6 +52,8 @@ const playfair_display = Playfair_Display({ subsets: ['latin'], weight: "400" })
 
 const Screen = () =>{
 
+    const [data, setData] = useState('jersey')
+    const items = data === 'jersey' ? jerseyItems : data === 'trophy' ? trophyItems : momentItems;
     const [isPending, startTransition] = React.useTransition();
     const [id, setId] = useState(0)
 
@@ -60,6 +76,9 @@ const Screen = () =>{
         });
     };
 
+
+
+
     return(
         <div className="text-white">
 
@@ -69,7 +88,7 @@ const Screen = () =>{
 
             <div className='flex items-center gap-3'>
 
-                <div className='w-auto flex items-center gap-2 bg-background rounded-2xl py-1 px-4 text-white mt-5 mb-6'>
+                <div className='w-auto lg:flex items-center gap-2 bg-background rounded-2xl py-1 px-4 text-white mt-5 mb-6'>
                     <Image src={web3Images} alt='' className='w-[30%]' />
                     <div className=''>
                         <Form {...form}>
@@ -121,31 +140,21 @@ const Screen = () =>{
             </div>
 
 
-            <div className='flex items-center justify-between mt-2'>
+            <div className='lg:flex items-center lg:justify-between mt-2'>
                     <p className=""># Marketplace</p>
-                    <div className="flex gap-1">
-                        <p className="bg-hover px-4 py-2 rounded-lg hover:bg-buttons" style={playfair_display.style}>Iconic jerseys</p>
-                        <p className="bg-hover px-4 py-2 rounded-lg hover:bg-buttons" style={playfair_display.style}>Iconic jerseys</p>
-                        <p className="bg-hover px-4 py-2 rounded-lg hover:bg-buttons" style={playfair_display.style}>Iconic jerseys</p>
-                        <p className="bg-hover px-4 py-2 rounded-lg hover:bg-buttons" style={playfair_display.style}>Iconic jerseys</p>
+                    <div className="flex gap-x-2">
+                        <p className="bg-hover px-4 py-2 rounded-lg hover:bg-buttons cursor-pointer" style={playfair_display.style} onClick={() => setData('jersey')}>Iconic jerseys</p>
+                    <p className="bg-hover px-4 py-2 rounded-lg hover:bg-buttons cursor-pointer" style={playfair_display.style} onClick={() => setData('trophy')}>Trophies</p>
+                    <p className="bg-hover px-4 py-2 rounded-lg hover:bg-buttons cursor-pointer" style={playfair_display.style} onClick={() => setData('moment')}>Moments</p>
+                        <p className="bg-hover px-4 py-2 rounded-lg hover:bg-buttons cursor-pointer" style={playfair_display.style}>SVEs</p>
                     </div>
             </div>
 
 
-            <div className='mt-4 flex flex-wrap justify-between gap-5 '>
-               <MarketModal/>
-               <MarketModal/>
-               <MarketModal/>
-               <MarketModal/>
-               <MarketModal/>
-               <MarketModal/>
-               <MarketModal/>
-               <MarketModal/>
-               <MarketModal/>
-               <MarketModal/>
-               <MarketModal/>
-               <MarketModal/>
-               <MarketModal/>
+            <div className='mt-4 grid grid-cols-1 lg:grid-cols-3 justify-between gap-5 '>
+                {items.map((item: Item) => (
+                    <MarketModal key={item.id} id={item.id} image={item.imageURL} text={item.title} name={item.name} />
+                ))}
             </div>
 
         </div>

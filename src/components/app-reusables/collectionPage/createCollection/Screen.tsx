@@ -78,8 +78,8 @@ const Screen = () => {
           }
         }
 
-        console.log('Listing executed:', executeResult);
         toast.success("Listing created and executed successfully");
+        console.log('Listing executed:', executeResult);
 
       } else {
         console.error("Failed to find listingId from ListingCreated event");

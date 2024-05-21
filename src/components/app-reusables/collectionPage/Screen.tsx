@@ -31,6 +31,16 @@ import MarketModal from '@/components/Modals/MarketModal';
 import { useModal } from '@/app/stores/context/modal';
 import { Cross, Plus } from 'lucide-react';
 import Link from 'next/link';
+import { jerseyItems, trophyItems, momentItems } from "@/app/constants/marketPlace"
+
+
+type Item = {
+    id: number;
+    name: string;
+    title: string;
+    imageURL: string;
+    category: string;
+}
 
 
 const playfair_display = Playfair_Display({ subsets: ['latin'], weight: "400" })
@@ -39,7 +49,8 @@ const playfair_display = Playfair_Display({ subsets: ['latin'], weight: "400" })
 
 const Screen = () => {
 
-    // const {modal, setModal } = useModal()
+    const [data, setData] = useState('jersey')
+    const items = data === 'jersey' ? jerseyItems : data === 'trophy' ? trophyItems : momentItems;
 
     const [collection, setCollection] = useState(0)
 
@@ -153,20 +164,10 @@ const Screen = () => {
 
                     </div>
                 }
-                <div className={` ${collection === 0 ? "opacity-50" : "" } relative mt-4 flex flex-wrap justify-between gap-5`}>
-                    <MarketModal />
-                    <MarketModal />
-                    <MarketModal />
-                    <MarketModal />
-                    <MarketModal />
-                    <MarketModal />
-                    <MarketModal />
-                    <MarketModal />
-                    <MarketModal />
-                    <MarketModal />
-                    <MarketModal />
-                    <MarketModal />
-                    <MarketModal />
+                <div className={` ${collection === 0 ? "opacity-50" : "" } relative mt-4 grid grid-cols-1 lg:grid-cols-3 justify-between gap-5`}>
+                    {items.map((item: Item) => (
+                        <MarketModal key={item.id} id={item.id} image={item.imageURL} text={item.title} name={item.name} />
+                    ))}
                 </div>
             </div>
         </div>

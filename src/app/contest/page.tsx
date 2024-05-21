@@ -45,13 +45,14 @@ const Page = () => {
     useEffect(() => {
 
         getListings()
-
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     useEffect(() => {
         if (listing) {
             console.log('Listed games:', listing);
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [listing]);
 
 

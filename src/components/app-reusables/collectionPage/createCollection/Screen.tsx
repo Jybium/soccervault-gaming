@@ -119,7 +119,7 @@ const Screen = () => {
       {/* ACTUAL FORM FOR CREATING THE NFT - COLLECTING THE DETAILS */}
       <section className="">
 
-        {/* <div className=''>
+        <div className=''>
           <label htmlFor="">Logo image</label>
           <div className="">
             <input type="file" name="" id="" />
@@ -130,7 +130,7 @@ const Screen = () => {
               <p>JPG, PNG, GIF, SVG, Mp4 </p>
             </div>
           </div>
-        </div> */}
+        </div>
 
         <div className="md:w-4/6 mt-5">
 

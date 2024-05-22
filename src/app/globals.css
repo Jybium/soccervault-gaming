@@ -14,3 +14,14 @@
     height: 100%;
     width: 100%;
 }
+
+.bidLayout {
+    background-image: url("../../public/bidImage.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: #2D2F42; 
+    background-blend-mode: overlay;
+    height: 100%;
+    width: 100%;
+}

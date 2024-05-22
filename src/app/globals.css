@@ -25,3 +25,9 @@
     height: 100%;
     width: 100%;
 }
+
+
+.hide-scrollbar {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}

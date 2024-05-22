@@ -164,7 +164,7 @@ const Screen = () => {
 
                     </div>
                 }
-                <div className={` ${collection === 0 ? "opacity-50" : "" } relative mt-4 grid grid-cols-1 lg:grid-cols-3 justify-between gap-5`}>
+                <div className={` ${collection === 0 ? "opacity-20" : "" } relative mt-4 grid grid-cols-1 lg:grid-cols-3 justify-between gap-5`}>
                     {items.map((item: Item) => (
                         <MarketModal key={item.id} id={item.id} image={item.imageURL} text={item.title} name={item.name} />
                     ))}

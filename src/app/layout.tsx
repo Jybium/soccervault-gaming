@@ -22,23 +22,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className='background'>
+        <body className={montserrat.className} style={{ backgroundImage: "#333651" }}>
       <ModalProvider>
         <ToasterContainer/>
-        <body className={montserrat.className} style={{ backgroundImage: "#333651" }}>
-          <Header />
-
-          <section className='relative flex justify-between pt-[70px]'>
-            <aside>
-              <NavBar />
-            </aside>
-            <main className='relative h-full bg-backgroun bg-cover bg-no-repeat overflow-y-auto w-[calc(100%-100px)] lg:w-[calc(100%-140px)] ml-auto px-5 mt-5'>
               {children}
-            </main>
-
-          </section>
-
-        </body>
       </ModalProvider>
+        </body>
     </html>
   )
 }

@@ -56,7 +56,7 @@ const Collections = () => {
         });
     };
     return (
-        <div className='text-white mt-5'>
+        <div className='text-white mt-5 pr-5'>
             <h1 className='text-extrabold text-2xl' style={playfair_display.style}>Top Collections</h1>
             <div className='flex items-center gap-3'>
 

@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react'
 import { Playfair_Display } from 'next/font/google'
-import { toast } from 'sonner';
+import { toast } from 'react-hot-toast';
 import { useForm } from 'react-hook-form';
 
 import {
@@ -15,6 +15,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
+import {useRouter} from 'next/navigation'
 
 import { ethers } from 'ethers';
 import getContract from '@/lib/contract';
@@ -30,6 +31,7 @@ const playfair_display = Playfair_Display({ subsets: ['latin'], weight: "700" })
 const Screen = () => {
   const [listing, setListing] = useState()
   const [loading, setLoading] = useState()
+  const router = useRouter()
   const [isPending, startTransition] = React.useTransition();
 
   const form = useForm({
@@ -99,6 +101,8 @@ const Screen = () => {
     startTransition(async () => {
       try {
         handleCreateListing(data)
+        toast.success("successfully created listing")
+        router.push('/bids/create-bid')
       } catch (error: any) {
         console.error("Error logging in:", error.message);
         toast.error("Error logging in. Please try again later.");

@@ -45,14 +45,167 @@ const eventData = {
       },
     },
     {
-      id: 33,
+      id: 34,
       status: "Ended",
       link: "/bids",
       image: images.thirdImage,
       title: "Soccer Fiery",
       details: {
         startInfo: {
-          label: "Ended on",
+          label: "Ends on",
+          time: "1 day ago",
+        },
+        priceInfo: {
+          label: "Final Price",
+          amount: "0.03 sol",
+        },
+      },
+    },
+    {
+      id: 35,
+      status: "Ended",
+      link: "/bids",
+      image: images.thirdImage,
+      title: "Soccer Fiery",
+      details: {
+        startInfo: {
+          label: "Ends on",
+          time: "1 day ago",
+        },
+        priceInfo: {
+          label: "Final Price",
+          amount: "0.03 sol",
+        },
+      },
+    },
+    {
+      id: 36,
+      status: "Ended",
+      link: "/bids",
+      image: images.thirdImage,
+      title: "Soccer Fiery",
+      details: {
+        startInfo: {
+          label: "Ends on",
+          time: "1 day ago",
+        },
+        priceInfo: {
+          label: "Final Price",
+          amount: "0.03 sol",
+        },
+      },
+    },
+    {
+      id: 37,
+      status: "Ended",
+      link: "/bids",
+      image: images.thirdImage,
+      title: "Soccer Fiery",
+      details: {
+        startInfo: {
+          label: "Ends on",
+          time: "1 day ago",
+        },
+        priceInfo: {
+          label: "Final Price",
+          amount: "0.03 sol",
+        },
+      },
+    },
+    {
+      id: 38,
+      status: "Ended",
+      link: "/bids",
+      image: images.thirdImage,
+      title: "Soccer Fiery",
+      details: {
+        startInfo: {
+          label: "Ends on",
+          time: "1 day ago",
+        },
+        priceInfo: {
+          label: "Final Price",
+          amount: "0.03 sol",
+        },
+      },
+    },
+    {
+      id: 39,
+      status: "Ended",
+      link: "/bids",
+      image: images.thirdImage,
+      title: "Soccer Fiery",
+      details: {
+        startInfo: {
+          label: "Ends on",
+          time: "1 day ago",
+        },
+        priceInfo: {
+          label: "Final Price",
+          amount: "0.03 sol",
+        },
+      },
+    },
+    {
+      id: 40,
+      status: "Ended",
+      link: "/bids",
+      image: images.thirdImage,
+      title: "Soccer Fiery",
+      details: {
+        startInfo: {
+          label: "Ends on",
+          time: "1 day ago",
+        },
+        priceInfo: {
+          label: "Final Price",
+          amount: "0.03 sol",
+        },
+      },
+    },
+    {
+      id: 41,
+      status: "Ended",
+      link: "/bids",
+      image: images.thirdImage,
+      title: "Soccer Fiery",
+      details: {
+        startInfo: {
+          label: "Ends on",
+          time: "1 day ago",
+        },
+        priceInfo: {
+          label: "Final Price",
+          amount: "0.03 sol",
+        },
+      },
+    },
+    {
+      id: 42,
+      status: "Ended",
+      link: "/bids",
+      image: images.thirdImage,
+      title: "Soccer Fiery",
+      details: {
+        startInfo: {
+          label: "Ends on",
+          time: "1 day ago",
+        },
+        priceInfo: {
+          label: "Final Price",
+          amount: "0.03 sol",
+        },
+      },
+    },
+    {
+      id: 43,
+      status: "Ended",
+      link: "/bids",
+      image: images.thirdImage,
+      title: "Soccer Fiery",
+      details: {
+        startInfo: {
+          label: "Ends on",
           time: "1 day ago",
         },
         priceInfo: {

@@ -5,11 +5,12 @@
 
 
 .background {
-    background-image: url("../../public/background.png");
+    /* background-image: url("../../public/background.png"); */
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    background-color: #2D2F42; 
+    background-color: #2D3047; 
+    /* opacity: 20%; */
     background-blend-mode: overlay;
     height: 100%;
     width: 100%;
@@ -30,4 +31,9 @@
 .hide-scrollbar {
     scrollbar-width: none;
     -ms-overflow-style: none;
+}
+
+
+input{
+    color: black;
 }

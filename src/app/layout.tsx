@@ -4,6 +4,7 @@ import { Montserrat } from 'next/font/google'
 import './globals.css'
 import Header from '@/components/app-reusables/LandingPage/Header'
 import NavBar from '@/components/app-reusables/LandingPage/NavBar'
+import SuccessfulList from '@/components/Modals/SuccessfulList'
 import { ModalProvider } from './stores/context/modal'
 import { ToasterContainer } from './stores/context/Toaster'
 
@@ -22,12 +23,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className='background'>
-        <body className={montserrat.className} style={{ backgroundImage: "#333651" }}>
-      <ModalProvider>
-        <ToasterContainer/>
-              {children}
-      </ModalProvider>
-        </body>
+      <body className={montserrat.className} style={{ backgroundImage: "#333651" }}>
+        <ModalProvider>
+          <ToasterContainer />
+          {children}
+          <SuccessfulList />
+        </ModalProvider>
+      </body>
     </html>
   )
 }

@@ -8,6 +8,10 @@ interface ModalContextType {
   setModal: (value: boolean) => void;
   walletAddress: string;
   setWalletAddress: (value: string) => void;
+  successModal: boolean;
+  setSuccessModal: (value: boolean) => void;
+  bid: string;
+  setBid: (value: string) => void;
   disconnectWallet: () => void;
 }
 
@@ -17,6 +21,8 @@ const ModalContext = createContext<ModalContextType | undefined>(undefined);
 // Define the ModalProvider component
 export const ModalProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [modal, setModal] = useState(false);
+  const [successModal, setSuccessModal] = useState(false);
+  const [bid, setBid] = useState("");
   const [walletAddress, setWalletAddress] = useState("");
 
   // Load wallet address from localStorage on component mount
@@ -44,6 +50,10 @@ export const ModalProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     setModal,
     walletAddress,
     setWalletAddress,
+    successModal,
+    setSuccessModal,
+    bid,
+    setBid,
     disconnectWallet,
   };
 

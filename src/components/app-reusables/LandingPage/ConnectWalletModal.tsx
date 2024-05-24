@@ -136,7 +136,7 @@ export function DialogCloseButton<Props = {}>({ onConnect }: { onConnect: (walle
             )}
 
             {walletAddress && (
-                <Button onClick={disconnectWallet} className="mt-4 text-sm bg-red-600 text-white rounded-lg">
+                <Button onClick={disconnectWallet} className="text-sm bg-red-600 text-white rounded-lg flex self-center">
                     Disconnect
                 </Button>
             )}

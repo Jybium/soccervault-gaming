@@ -2,7 +2,7 @@
 "use client"
 
 
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Playfair_Display } from 'next/font/google'
 import {
     Form,
@@ -28,6 +28,8 @@ import { Button } from '@/components/ui/button';
 import web3Images from "../../../../public/web3-coins.svg"
 import Image from 'next/image';
 import data, { days } from "@/app/constants/collection"
+import getContract from '@/lib/contract';
+import { NFT_ABI, NFT_CONTRACT_ADDRESS } from '@/config';
 
 
 
@@ -42,6 +44,34 @@ const Collections = () => {
             network: ""
         },
     });
+
+
+
+    const getAllNFTs = async () => {
+        const vaultContract = await getContract(NFT_CONTRACT_ADDRESS, NFT_ABI);
+        try {
+            const result = await vaultContract.getMyNfts();
+            // const listings = Object.values(result).map((listing: any) => ({
+            //   id: listing[0],
+            //   lister: listing[1],
+            //   price: listing[2],
+            //   deadline: listing[3],
+            //   highestBidder: listing[4],
+            //   active: listing[5]
+            // }));
+
+            // console.log(listings);
+            // setActiveListings(listings);
+
+            console.log(result);
+        } catch (error) {
+            console.error('Error fetching listings:', error);
+        }
+    };
+
+    useEffect(() => {
+        getAllNFTs();
+    }, []);
 
 
     const onHandleSubmit = async (data: any) => {

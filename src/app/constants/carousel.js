@@ -2,6 +2,7 @@ import firstImage from "../../../public/carousel-one.png"
 import secondImage from "../../../public/eventCarousel.png"
 import thirdImage from "../../../public/showcaseCarousel.jpeg"
 import fourthImage from "../../../public/creatorCarousel.jpeg"
+import fifthImage from "../../../public/tournamentCarosel.jpg"
 
 
 const carouselData = [
@@ -40,6 +41,15 @@ const carouselData = [
     description:
       "Join a vibrant community of creators. Showcase your work, gain exposure, and connect with potential buyers and collaborators.",
     image: fourthImage,
+  },
+  {
+    id: 5,
+    alt: "Slide 5",
+    title: "Creator Hub",
+    headline: "Empower Your Creativity",
+    description:
+      "Join a vibrant community of creators. Showcase your work, gain exposure, and connect with potential buyers and collaborators.",
+    image: fifthImage,
   },
 ];
 

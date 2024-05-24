@@ -26,6 +26,7 @@ import { onSubmitError } from "@/lib/utils";
 import * as z from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useModal } from '@/app/stores/context/modal';
+import Image from 'next/image';
 
 
 const playfair_display = Playfair_Display({ subsets: ['latin'], weight: "700" })
@@ -34,11 +35,12 @@ const formSchema = z.object({
   price: z.string(), // Assuming price is a string
   duration: z
     .string()
-  
+
 });
 
 const Screen = () => {
-  const {setBid, setSuccessModal} = useModal()
+  const [imageUrl, setImageUrl] = useState('');
+  const { setBid, setSuccessModal } = useModal()
   const [listing, setListing] = useState()
   const [loading, setLoading] = useState()
   const router = useRouter()
@@ -52,16 +54,23 @@ const Screen = () => {
     },
   });
 
- 
+
+  const handleFileChange = (event: any) => {
+    const file = event.target.files[0];
+    const blobUrl = URL.createObjectURL(file);
+    setImageUrl(blobUrl);
+  };
+
+
   const getSigner = async () => {
-    if (typeof window.ethereum !== "undefined"){
+    if (typeof window.ethereum !== "undefined") {
       const provider = new ethers.BrowserProvider(window.ethereum);
       const signer = provider.getSigner();
       return signer;
     }
   };
 
- 
+
 
   const handleCreateListing = async (data: { price: number; duration: number }) => {
     try {
@@ -151,7 +160,7 @@ const Screen = () => {
       console.log(`Listing executed with ID: ${listingExecutedEvent.args.listingId}`);
       console.log('Listing details:', listingExecutedEvent.args.listing);
 
-  
+
       toast.success("Listing created and executed successfully");
       setBid(id)
       setSuccessModal(true)
@@ -202,20 +211,30 @@ const Screen = () => {
       {/* ACTUAL FORM FOR CREATING THE NFT - COLLECTING THE DETAILS */}
       <section className="">
 
-        <div className=''>
-          <label htmlFor="">Logo image</label>
-          <div className="">
-            <input type="file" name="" id="" />
-            <div className=''>
+        <div className='md:flex items-start space-x-4'>
+          <div className="space-y-3">
+            <div className="grid">
+
+            <label htmlFor="fileInput">Logo image</label>
+            <input type="file" id="fileInput" className='h-40 w-40 bg-slate-400' onChange={handleFileChange} />
+            </div>
+            <div className='space-y-1'>
               <p>Drag and drop media</p>
               <p className="">Browse media</p>
               <p className="">Max size 50MB</p>
               <p>JPG, PNG, GIF, SVG, Mp4 </p>
             </div>
           </div>
+          {/* Image container */}
+          {imageUrl && (
+            <div className="m">
+              <Image src={imageUrl} alt="Chosen Image" width={160} height={160} className="h-40 w-40" />
+            </div>
+          )}
         </div>
 
-        <div className="md:w-4/6 mt-5">
+
+        <div className="md:w-5/6 mt-5">
 
           <Form {...form}>
             <form className='flex justify-between items-end' onSubmit={form.handleSubmit(onHandleSubmit, (errors) => {
@@ -226,7 +245,7 @@ const Screen = () => {
                 name="price"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Listing price</FormLabel>
+                    <FormLabel>Listing price (Must be greater than 100)</FormLabel>
                     <FormControl>
                       <Input
                         type="price"
@@ -244,7 +263,7 @@ const Screen = () => {
                 name="duration"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Duration</FormLabel>
+                    <FormLabel>Duration in seconds (must be greater than 100)</FormLabel>
                     <FormControl>
                       <Input
                         type="number"

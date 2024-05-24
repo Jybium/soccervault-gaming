@@ -6,11 +6,24 @@ import { PiBuildingOffice } from "react-icons/pi";
 import { CalendarDays } from 'lucide-react';
 import { toast } from 'react-hot-toast'
 import { useModal } from '@/app/stores/context/modal';
+import { useRouter } from 'next/navigation';
 
 
 const SuccessfulList = () => {
 
-  const {successModal, bid} = useModal()
+  const {successModal, bid, setSuccessModal} = useModal()
+  const router = useRouter()
+
+  const HandleBid = () =>{
+    router.push(`/bids/create-bid/${bid}`)
+    setSuccessModal(false)
+  }
+
+  const HandleMarket = () =>{
+    router.push(`/marketplace`)
+    toast
+    setSuccessModal(false)
+  }
 
   return (
 
@@ -27,7 +40,7 @@ const SuccessfulList = () => {
 
 
               <div className="lg:mt-10 my-6">
-                <Link href="/marketplace" onClick={() => toast.success("NFT added to market Successfully!")}>
+                <Link href="/marketplace" onClick={HandleMarket}>
                   <div className="space-y-5 p-8 bg-gold/30 rounded-t-md border border-deepGold">
                     <h2 className="text-2xl font-bold text-deepGold">
                       Add to marketplace
@@ -40,7 +53,7 @@ const SuccessfulList = () => {
                 </Link>
 
 
-                <Link href={`/bids/create-bid/${bid}`}>
+                <Link href={`/bids/create-bid/${bid}`} onClick={HandleBid}>
                   <div className="space-y-5 bg-slate-500 p-8 rounded-b-md border border-purple">
                     <h2 className="text-2xl font-bold text-white">
                       Place for bidding

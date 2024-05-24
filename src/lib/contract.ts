@@ -57,6 +57,7 @@ const getContract = async (
     ) as Contract & NFTContract;
   } else {
     console.error("No Ethereum provider found. Please install MetaMask.");
+    alert("No Ethereum provider found. Please install MetaMask.");
     throw new Error("No Ethereum provider found");
   }
 };

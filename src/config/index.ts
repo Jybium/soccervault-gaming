@@ -1,6 +1,13 @@
-export const NFT_CONTRACT_ADDRESS = "0x5698F177E16f71cdA7882870E0C44Bc3E0fe0ad8";
+// MARKETPLACE CONFIG
 
-export const ERC20_CONTRACT_ADDRESS = "0x4B097E3cDf852bb9B35Ba33C912198894B44d9da";
+
+export const NFT_CONTRACT_ADDRESS = "0x85271cb4A12a0BB18c82c5BC7d7F8752B68b79cE";
+
+export const ERC20_CONTRACT_ADDRESS = "0x51D68C2294656194d55f72832517c9083a273a60";
+
+export const ERC721_CONTRACT_ADDRESS = "0xC85fd40C7cf81507753742d69d3FE4d86E20D2E4";
+
+
 
 export const NFT_ABI = [
   {
@@ -18,11 +25,6 @@ export const NFT_ABI = [
     ],
     stateMutability: "nonpayable",
     type: "constructor",
-  },
-  {
-    inputs: [],
-    name: "EXPIRED",
-    type: "error",
   },
   {
     inputs: [
@@ -50,6 +52,31 @@ export const NFT_ABI = [
     inputs: [],
     name: "ReentrancyGuardReentrantCall",
     type: "error",
+  },
+  {
+    anonymous: false,
+    inputs: [
+      {
+        indexed: true,
+        internalType: "uint256",
+        name: "bidId",
+        type: "uint256",
+      },
+      {
+        indexed: true,
+        internalType: "address",
+        name: "winner",
+        type: "address",
+      },
+      {
+        indexed: true,
+        internalType: "uint256",
+        name: "highestBid",
+        type: "uint256",
+      },
+    ],
+    name: "BidExecuted",
+    type: "event",
   },
   {
     anonymous: false,
@@ -118,6 +145,11 @@ export const NFT_ABI = [
             type: "uint256",
           },
           {
+            internalType: "address",
+            name: "tokenAddress",
+            type: "address",
+          },
+          {
             internalType: "uint256",
             name: "price",
             type: "uint256",
@@ -164,6 +196,11 @@ export const NFT_ABI = [
             type: "uint256",
           },
           {
+            internalType: "address",
+            name: "tokenAddress",
+            type: "address",
+          },
+          {
             internalType: "uint256",
             name: "price",
             type: "uint256",
@@ -208,6 +245,11 @@ export const NFT_ABI = [
             internalType: "uint256",
             name: "tokenId",
             type: "uint256",
+          },
+          {
+            internalType: "address",
+            name: "tokenAddress",
+            type: "address",
           },
           {
             internalType: "uint256",
@@ -262,6 +304,153 @@ export const NFT_ABI = [
     inputs: [
       {
         internalType: "uint256",
+        name: "",
+        type: "uint256",
+      },
+    ],
+    name: "Createdbids",
+    outputs: [
+      {
+        internalType: "uint256",
+        name: "tokenId",
+        type: "uint256",
+      },
+      {
+        internalType: "uint256",
+        name: "price",
+        type: "uint256",
+      },
+      {
+        internalType: "uint88",
+        name: "deadline",
+        type: "uint88",
+      },
+      {
+        internalType: "address",
+        name: "lister",
+        type: "address",
+      },
+      {
+        internalType: "bool",
+        name: "active",
+        type: "bool",
+      },
+      {
+        internalType: "uint256",
+        name: "highestBid",
+        type: "uint256",
+      },
+      {
+        internalType: "uint256",
+        name: "bidBalance",
+        type: "uint256",
+      },
+      {
+        internalType: "address",
+        name: "highestBidder",
+        type: "address",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "ERCtoken",
+    outputs: [
+      {
+        internalType: "address",
+        name: "",
+        type: "address",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "SoccerNft",
+    outputs: [
+      {
+        internalType: "address",
+        name: "",
+        type: "address",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "uint256",
+        name: "",
+        type: "uint256",
+      },
+    ],
+    name: "bids",
+    outputs: [
+      {
+        internalType: "uint256",
+        name: "tokenId",
+        type: "uint256",
+      },
+      {
+        internalType: "uint256",
+        name: "price",
+        type: "uint256",
+      },
+      {
+        internalType: "uint88",
+        name: "deadline",
+        type: "uint88",
+      },
+      {
+        internalType: "address",
+        name: "lister",
+        type: "address",
+      },
+      {
+        internalType: "bool",
+        name: "active",
+        type: "bool",
+      },
+      {
+        internalType: "uint256",
+        name: "highestBid",
+        type: "uint256",
+      },
+      {
+        internalType: "uint256",
+        name: "bidBalance",
+        type: "uint256",
+      },
+      {
+        internalType: "address",
+        name: "highestBidder",
+        type: "address",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "contractOwner",
+    outputs: [
+      {
+        internalType: "address",
+        name: "",
+        type: "address",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "uint256",
         name: "_listingId",
         type: "uint256",
       },
@@ -274,40 +463,27 @@ export const NFT_ABI = [
   {
     inputs: [
       {
+        internalType: "address",
+        name: "_tokenAddress",
+        type: "address",
+      },
+      {
         internalType: "uint256",
-        name: "price",
+        name: "_tokenId",
         type: "uint256",
       },
       {
         internalType: "uint256",
-        name: "durationInSeconds",
+        name: "_price",
+        type: "uint256",
+      },
+      {
+        internalType: "uint256",
+        name: "_deadline",
         type: "uint256",
       },
     ],
     name: "createListing",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "uint256",
-        name: "_listingId",
-        type: "uint256",
-      },
-      {
-        internalType: "uint256",
-        name: "_newPrice",
-        type: "uint256",
-      },
-      {
-        internalType: "bool",
-        name: "_active",
-        type: "bool",
-      },
-    ],
-    name: "editListing",
     outputs: [],
     stateMutability: "nonpayable",
     type: "function",
@@ -332,11 +508,6 @@ export const NFT_ABI = [
         name: "_listingId",
         type: "uint256",
       },
-      {
-        internalType: "string",
-        name: "tokenUri",
-        type: "string",
-      },
     ],
     name: "executeListing",
     outputs: [],
@@ -344,57 +515,8 @@ export const NFT_ABI = [
     type: "function",
   },
   {
-    inputs: [
-      {
-        internalType: "uint256",
-        name: "ind",
-        type: "uint256",
-      },
-      {
-        internalType: "uint256",
-        name: "_bidId",
-        type: "uint256",
-      },
-    ],
-    name: "getBidders",
-    outputs: [
-      {
-        internalType: "address",
-        name: "",
-        type: "address",
-      },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "uint256",
-        name: "bidId",
-        type: "uint256",
-      },
-    ],
-    name: "getBidderslength",
-    outputs: [
-      {
-        internalType: "uint256",
-        name: "",
-        type: "uint256",
-      },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "uint256",
-        name: "_listingId",
-        type: "uint256",
-      },
-    ],
-    name: "getListing",
+    inputs: [],
+    name: "getAllBids",
     outputs: [
       {
         components: [
@@ -423,8 +545,174 @@ export const NFT_ABI = [
             name: "active",
             type: "bool",
           },
+          {
+            internalType: "uint256",
+            name: "highestBid",
+            type: "uint256",
+          },
+          {
+            internalType: "uint256",
+            name: "bidBalance",
+            type: "uint256",
+          },
+          {
+            internalType: "address",
+            name: "highestBidder",
+            type: "address",
+          },
         ],
-        internalType: "struct SoccerVault.Listing",
+        internalType: "struct SoccerVault.Bid[]",
+        name: "",
+        type: "tuple[]",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "getAllListings",
+    outputs: [
+      {
+        components: [
+          {
+            internalType: "uint256",
+            name: "tokenId",
+            type: "uint256",
+          },
+          {
+            internalType: "address",
+            name: "tokenAddress",
+            type: "address",
+          },
+          {
+            internalType: "uint256",
+            name: "price",
+            type: "uint256",
+          },
+          {
+            internalType: "uint88",
+            name: "deadline",
+            type: "uint88",
+          },
+          {
+            internalType: "address",
+            name: "lister",
+            type: "address",
+          },
+          {
+            internalType: "bool",
+            name: "active",
+            type: "bool",
+          },
+        ],
+        internalType: "struct SoccerVault.Listing[]",
+        name: "",
+        type: "tuple[]",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "getAllNFTs",
+    outputs: [
+      {
+        components: [
+          {
+            internalType: "uint256",
+            name: "tokenId",
+            type: "uint256",
+          },
+          {
+            internalType: "address",
+            name: "tokenAddress",
+            type: "address",
+          },
+          {
+            internalType: "uint256",
+            name: "price",
+            type: "uint256",
+          },
+          {
+            internalType: "uint88",
+            name: "deadline",
+            type: "uint88",
+          },
+          {
+            internalType: "address",
+            name: "lister",
+            type: "address",
+          },
+          {
+            internalType: "bool",
+            name: "active",
+            type: "bool",
+          },
+        ],
+        internalType: "struct SoccerVault.Listing[]",
+        name: "",
+        type: "tuple[]",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "uint256",
+        name: "bidId",
+        type: "uint256",
+      },
+    ],
+    name: "getBid",
+    outputs: [
+      {
+        components: [
+          {
+            internalType: "uint256",
+            name: "tokenId",
+            type: "uint256",
+          },
+          {
+            internalType: "uint256",
+            name: "price",
+            type: "uint256",
+          },
+          {
+            internalType: "uint88",
+            name: "deadline",
+            type: "uint88",
+          },
+          {
+            internalType: "address",
+            name: "lister",
+            type: "address",
+          },
+          {
+            internalType: "bool",
+            name: "active",
+            type: "bool",
+          },
+          {
+            internalType: "uint256",
+            name: "highestBid",
+            type: "uint256",
+          },
+          {
+            internalType: "uint256",
+            name: "bidBalance",
+            type: "uint256",
+          },
+          {
+            internalType: "address",
+            name: "highestBidder",
+            type: "address",
+          },
+        ],
+        internalType: "struct SoccerVault.Bid",
         name: "",
         type: "tuple",
       },
@@ -435,17 +723,139 @@ export const NFT_ABI = [
   {
     inputs: [
       {
+        internalType: "uint256",
+        name: "bidId",
+        type: "uint256",
+      },
+    ],
+    name: "getHighestBidder",
+    outputs: [
+      {
         internalType: "address",
-        name: "user",
+        name: "",
         type: "address",
       },
     ],
-    name: "getUserPreferences",
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "getListingPrice",
     outputs: [
       {
-        internalType: "string",
+        internalType: "uint256",
         name: "",
-        type: "string",
+        type: "uint256",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "address",
+        name: "owner",
+        type: "address",
+      },
+    ],
+    name: "getListingsByAddress",
+    outputs: [
+      {
+        components: [
+          {
+            internalType: "uint256",
+            name: "tokenId",
+            type: "uint256",
+          },
+          {
+            internalType: "address",
+            name: "tokenAddress",
+            type: "address",
+          },
+          {
+            internalType: "uint256",
+            name: "price",
+            type: "uint256",
+          },
+          {
+            internalType: "uint88",
+            name: "deadline",
+            type: "uint88",
+          },
+          {
+            internalType: "address",
+            name: "lister",
+            type: "address",
+          },
+          {
+            internalType: "bool",
+            name: "active",
+            type: "bool",
+          },
+        ],
+        internalType: "struct SoccerVault.Listing[]",
+        name: "",
+        type: "tuple[]",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "getMyNFTs",
+    outputs: [
+      {
+        components: [
+          {
+            internalType: "uint256",
+            name: "tokenId",
+            type: "uint256",
+          },
+          {
+            internalType: "address",
+            name: "tokenAddress",
+            type: "address",
+          },
+          {
+            internalType: "uint256",
+            name: "price",
+            type: "uint256",
+          },
+          {
+            internalType: "uint88",
+            name: "deadline",
+            type: "uint88",
+          },
+          {
+            internalType: "address",
+            name: "lister",
+            type: "address",
+          },
+          {
+            internalType: "bool",
+            name: "active",
+            type: "bool",
+          },
+        ],
+        internalType: "struct SoccerVault.Listing[]",
+        name: "",
+        type: "tuple[]",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "listPrice",
+    outputs: [
+      {
+        internalType: "uint256",
+        name: "",
+        type: "uint256",
       },
     ],
     stateMutability: "view",
@@ -454,6 +864,19 @@ export const NFT_ABI = [
   {
     inputs: [],
     name: "listingId",
+    outputs: [
+      {
+        internalType: "uint256",
+        name: "",
+        type: "uint256",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "listingPrice",
     outputs: [
       {
         internalType: "uint256",
@@ -478,6 +901,11 @@ export const NFT_ABI = [
         internalType: "uint256",
         name: "tokenId",
         type: "uint256",
+      },
+      {
+        internalType: "address",
+        name: "tokenAddress",
+        type: "address",
       },
       {
         internalType: "uint256",
@@ -535,49 +963,8 @@ export const NFT_ABI = [
     type: "function",
   },
   {
-    inputs: [
-      {
-        internalType: "uint256",
-        name: "tokenId",
-        type: "uint256",
-      },
-    ],
-    name: "removeBid",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
     inputs: [],
     name: "renounceOwnership",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "string",
-        name: "category",
-        type: "string",
-      },
-      {
-        internalType: "uint256",
-        name: "maxPrice",
-        type: "uint256",
-      },
-      {
-        internalType: "bool",
-        name: "allowAuctions",
-        type: "bool",
-      },
-      {
-        internalType: "uint256[]",
-        name: "preferredTokenIds",
-        type: "uint256[]",
-      },
-    ],
-    name: "setUserPreferences",
     outputs: [],
     stateMutability: "nonpayable",
     type: "function",
@@ -612,6 +999,19 @@ export const NFT_ABI = [
     inputs: [
       {
         internalType: "uint256",
+        name: "_listPrice",
+        type: "uint256",
+      },
+    ],
+    name: "updateListPrice",
+    outputs: [],
+    stateMutability: "payable",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "uint256",
         name: "amount",
         type: "uint256",
       },
@@ -630,31 +1030,327 @@ export const NFT_ABI = [
   
 
 export const ERC20_ABI = [
+		{
+			"inputs": [],
+			"stateMutability": "nonpayable",
+			"type": "constructor"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "address",
+					"name": "spender",
+					"type": "address"
+				},
+				{
+					"internalType": "uint256",
+					"name": "allowance",
+					"type": "uint256"
+				},
+				{
+					"internalType": "uint256",
+					"name": "needed",
+					"type": "uint256"
+				}
+			],
+			"name": "ERC20InsufficientAllowance",
+			"type": "error"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "address",
+					"name": "sender",
+					"type": "address"
+				},
+				{
+					"internalType": "uint256",
+					"name": "balance",
+					"type": "uint256"
+				},
+				{
+					"internalType": "uint256",
+					"name": "needed",
+					"type": "uint256"
+				}
+			],
+			"name": "ERC20InsufficientBalance",
+			"type": "error"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "address",
+					"name": "approver",
+					"type": "address"
+				}
+			],
+			"name": "ERC20InvalidApprover",
+			"type": "error"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "address",
+					"name": "receiver",
+					"type": "address"
+				}
+			],
+			"name": "ERC20InvalidReceiver",
+			"type": "error"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "address",
+					"name": "sender",
+					"type": "address"
+				}
+			],
+			"name": "ERC20InvalidSender",
+			"type": "error"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "address",
+					"name": "spender",
+					"type": "address"
+				}
+			],
+			"name": "ERC20InvalidSpender",
+			"type": "error"
+		},
+		{
+			"anonymous": false,
+			"inputs": [
+				{
+					"indexed": true,
+					"internalType": "address",
+					"name": "owner",
+					"type": "address"
+				},
+				{
+					"indexed": true,
+					"internalType": "address",
+					"name": "spender",
+					"type": "address"
+				},
+				{
+					"indexed": false,
+					"internalType": "uint256",
+					"name": "value",
+					"type": "uint256"
+				}
+			],
+			"name": "Approval",
+			"type": "event"
+		},
+		{
+			"anonymous": false,
+			"inputs": [
+				{
+					"indexed": true,
+					"internalType": "address",
+					"name": "from",
+					"type": "address"
+				},
+				{
+					"indexed": true,
+					"internalType": "address",
+					"name": "to",
+					"type": "address"
+				},
+				{
+					"indexed": false,
+					"internalType": "uint256",
+					"name": "value",
+					"type": "uint256"
+				}
+			],
+			"name": "Transfer",
+			"type": "event"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "address",
+					"name": "owner",
+					"type": "address"
+				},
+				{
+					"internalType": "address",
+					"name": "spender",
+					"type": "address"
+				}
+			],
+			"name": "allowance",
+			"outputs": [
+				{
+					"internalType": "uint256",
+					"name": "",
+					"type": "uint256"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "address",
+					"name": "spender",
+					"type": "address"
+				},
+				{
+					"internalType": "uint256",
+					"name": "value",
+					"type": "uint256"
+				}
+			],
+			"name": "approve",
+			"outputs": [
+				{
+					"internalType": "bool",
+					"name": "",
+					"type": "bool"
+				}
+			],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "address",
+					"name": "account",
+					"type": "address"
+				}
+			],
+			"name": "balanceOf",
+			"outputs": [
+				{
+					"internalType": "uint256",
+					"name": "",
+					"type": "uint256"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "decimals",
+			"outputs": [
+				{
+					"internalType": "uint8",
+					"name": "",
+					"type": "uint8"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "name",
+			"outputs": [
+				{
+					"internalType": "string",
+					"name": "",
+					"type": "string"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "symbol",
+			"outputs": [
+				{
+					"internalType": "string",
+					"name": "",
+					"type": "string"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "totalSupply",
+			"outputs": [
+				{
+					"internalType": "uint256",
+					"name": "",
+					"type": "uint256"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "address",
+					"name": "to",
+					"type": "address"
+				},
+				{
+					"internalType": "uint256",
+					"name": "value",
+					"type": "uint256"
+				}
+			],
+			"name": "transfer",
+			"outputs": [
+				{
+					"internalType": "bool",
+					"name": "",
+					"type": "bool"
+				}
+			],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "address",
+					"name": "from",
+					"type": "address"
+				},
+				{
+					"internalType": "address",
+					"name": "to",
+					"type": "address"
+				},
+				{
+					"internalType": "uint256",
+					"name": "value",
+					"type": "uint256"
+				}
+			],
+			"name": "transferFrom",
+			"outputs": [
+				{
+					"internalType": "bool",
+					"name": "",
+					"type": "bool"
+				}
+			],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		}
+	];
+
+
+export const ERC721_ABI = [
   {
     inputs: [],
     stateMutability: "nonpayable",
     type: "constructor",
-  },
-  {
-    inputs: [
-      {
-        internalType: "address",
-        name: "spender",
-        type: "address",
-      },
-      {
-        internalType: "uint256",
-        name: "allowance",
-        type: "uint256",
-      },
-      {
-        internalType: "uint256",
-        name: "needed",
-        type: "uint256",
-      },
-    ],
-    name: "ERC20InsufficientAllowance",
-    type: "error",
   },
   {
     inputs: [
@@ -665,16 +1361,32 @@ export const ERC20_ABI = [
       },
       {
         internalType: "uint256",
-        name: "balance",
+        name: "tokenId",
         type: "uint256",
       },
       {
+        internalType: "address",
+        name: "owner",
+        type: "address",
+      },
+    ],
+    name: "ERC721IncorrectOwner",
+    type: "error",
+  },
+  {
+    inputs: [
+      {
+        internalType: "address",
+        name: "operator",
+        type: "address",
+      },
+      {
         internalType: "uint256",
-        name: "needed",
+        name: "tokenId",
         type: "uint256",
       },
     ],
-    name: "ERC20InsufficientBalance",
+    name: "ERC721InsufficientApproval",
     type: "error",
   },
   {
@@ -685,7 +1397,29 @@ export const ERC20_ABI = [
         type: "address",
       },
     ],
-    name: "ERC20InvalidApprover",
+    name: "ERC721InvalidApprover",
+    type: "error",
+  },
+  {
+    inputs: [
+      {
+        internalType: "address",
+        name: "operator",
+        type: "address",
+      },
+    ],
+    name: "ERC721InvalidOperator",
+    type: "error",
+  },
+  {
+    inputs: [
+      {
+        internalType: "address",
+        name: "owner",
+        type: "address",
+      },
+    ],
+    name: "ERC721InvalidOwner",
     type: "error",
   },
   {
@@ -696,7 +1430,7 @@ export const ERC20_ABI = [
         type: "address",
       },
     ],
-    name: "ERC20InvalidReceiver",
+    name: "ERC721InvalidReceiver",
     type: "error",
   },
   {
@@ -707,18 +1441,18 @@ export const ERC20_ABI = [
         type: "address",
       },
     ],
-    name: "ERC20InvalidSender",
+    name: "ERC721InvalidSender",
     type: "error",
   },
   {
     inputs: [
       {
-        internalType: "address",
-        name: "spender",
-        type: "address",
+        internalType: "uint256",
+        name: "tokenId",
+        type: "uint256",
       },
     ],
-    name: "ERC20InvalidSpender",
+    name: "ERC721NonexistentToken",
     type: "error",
   },
   {
@@ -733,17 +1467,74 @@ export const ERC20_ABI = [
       {
         indexed: true,
         internalType: "address",
-        name: "spender",
+        name: "approved",
         type: "address",
       },
       {
-        indexed: false,
+        indexed: true,
         internalType: "uint256",
-        name: "value",
+        name: "tokenId",
         type: "uint256",
       },
     ],
     name: "Approval",
+    type: "event",
+  },
+  {
+    anonymous: false,
+    inputs: [
+      {
+        indexed: true,
+        internalType: "address",
+        name: "owner",
+        type: "address",
+      },
+      {
+        indexed: true,
+        internalType: "address",
+        name: "operator",
+        type: "address",
+      },
+      {
+        indexed: false,
+        internalType: "bool",
+        name: "approved",
+        type: "bool",
+      },
+    ],
+    name: "ApprovalForAll",
+    type: "event",
+  },
+  {
+    anonymous: false,
+    inputs: [
+      {
+        indexed: false,
+        internalType: "uint256",
+        name: "_fromTokenId",
+        type: "uint256",
+      },
+      {
+        indexed: false,
+        internalType: "uint256",
+        name: "_toTokenId",
+        type: "uint256",
+      },
+    ],
+    name: "BatchMetadataUpdate",
+    type: "event",
+  },
+  {
+    anonymous: false,
+    inputs: [
+      {
+        indexed: false,
+        internalType: "uint256",
+        name: "_tokenId",
+        type: "uint256",
+      },
+    ],
+    name: "MetadataUpdate",
     type: "event",
   },
   {
@@ -762,9 +1553,9 @@ export const ERC20_ABI = [
         type: "address",
       },
       {
-        indexed: false,
+        indexed: true,
         internalType: "uint256",
-        name: "value",
+        name: "tokenId",
         type: "uint256",
       },
     ],
@@ -775,47 +1566,17 @@ export const ERC20_ABI = [
     inputs: [
       {
         internalType: "address",
-        name: "owner",
-        type: "address",
-      },
-      {
-        internalType: "address",
-        name: "spender",
-        type: "address",
-      },
-    ],
-    name: "allowance",
-    outputs: [
-      {
-        internalType: "uint256",
-        name: "",
-        type: "uint256",
-      },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "address",
-        name: "spender",
+        name: "to",
         type: "address",
       },
       {
         internalType: "uint256",
-        name: "value",
+        name: "tokenId",
         type: "uint256",
       },
     ],
     name: "approve",
-    outputs: [
-      {
-        internalType: "bool",
-        name: "",
-        type: "bool",
-      },
-    ],
+    outputs: [],
     stateMutability: "nonpayable",
     type: "function",
   },
@@ -823,7 +1584,7 @@ export const ERC20_ABI = [
     inputs: [
       {
         internalType: "address",
-        name: "account",
+        name: "owner",
         type: "address",
       },
     ],
@@ -839,16 +1600,70 @@ export const ERC20_ABI = [
     type: "function",
   },
   {
-    inputs: [],
-    name: "decimals",
+    inputs: [
+      {
+        internalType: "uint256",
+        name: "tokenId",
+        type: "uint256",
+      },
+    ],
+    name: "getApproved",
     outputs: [
       {
-        internalType: "uint8",
+        internalType: "address",
         name: "",
-        type: "uint8",
+        type: "address",
       },
     ],
     stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "address",
+        name: "owner",
+        type: "address",
+      },
+      {
+        internalType: "address",
+        name: "operator",
+        type: "address",
+      },
+    ],
+    name: "isApprovedForAll",
+    outputs: [
+      {
+        internalType: "bool",
+        name: "",
+        type: "bool",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "string",
+        name: "tokenURI",
+        type: "string",
+      },
+      {
+        internalType: "address",
+        name: "mintnft",
+        type: "address",
+      },
+    ],
+    name: "mintNFT",
+    outputs: [
+      {
+        internalType: "uint256",
+        name: "tokenId",
+        type: "uint256",
+      },
+    ],
+    stateMutability: "nonpayable",
     type: "function",
   },
   {
@@ -859,6 +1674,113 @@ export const ERC20_ABI = [
         internalType: "string",
         name: "",
         type: "string",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "uint256",
+        name: "tokenId",
+        type: "uint256",
+      },
+    ],
+    name: "ownerOf",
+    outputs: [
+      {
+        internalType: "address",
+        name: "",
+        type: "address",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "address",
+        name: "from",
+        type: "address",
+      },
+      {
+        internalType: "address",
+        name: "to",
+        type: "address",
+      },
+      {
+        internalType: "uint256",
+        name: "tokenId",
+        type: "uint256",
+      },
+    ],
+    name: "safeTransferFrom",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "address",
+        name: "from",
+        type: "address",
+      },
+      {
+        internalType: "address",
+        name: "to",
+        type: "address",
+      },
+      {
+        internalType: "uint256",
+        name: "tokenId",
+        type: "uint256",
+      },
+      {
+        internalType: "bytes",
+        name: "data",
+        type: "bytes",
+      },
+    ],
+    name: "safeTransferFrom",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "address",
+        name: "operator",
+        type: "address",
+      },
+      {
+        internalType: "bool",
+        name: "approved",
+        type: "bool",
+      },
+    ],
+    name: "setApprovalForAll",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "bytes4",
+        name: "interfaceId",
+        type: "bytes4",
+      },
+    ],
+    name: "supportsInterface",
+    outputs: [
+      {
+        internalType: "bool",
+        name: "",
+        type: "bool",
       },
     ],
     stateMutability: "view",
@@ -878,40 +1800,22 @@ export const ERC20_ABI = [
     type: "function",
   },
   {
-    inputs: [],
-    name: "totalSupply",
-    outputs: [
+    inputs: [
       {
         internalType: "uint256",
-        name: "",
+        name: "tokenId",
         type: "uint256",
+      },
+    ],
+    name: "tokenURI",
+    outputs: [
+      {
+        internalType: "string",
+        name: "",
+        type: "string",
       },
     ],
     stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "address",
-        name: "to",
-        type: "address",
-      },
-      {
-        internalType: "uint256",
-        name: "value",
-        type: "uint256",
-      },
-    ],
-    name: "transfer",
-    outputs: [
-      {
-        internalType: "bool",
-        name: "",
-        type: "bool",
-      },
-    ],
-    stateMutability: "nonpayable",
     type: "function",
   },
   {
@@ -928,22 +1832,21 @@ export const ERC20_ABI = [
       },
       {
         internalType: "uint256",
-        name: "value",
+        name: "tokenId",
         type: "uint256",
       },
     ],
     name: "transferFrom",
-    outputs: [
-      {
-        internalType: "bool",
-        name: "",
-        type: "bool",
-      },
-    ],
+    outputs: [],
     stateMutability: "nonpayable",
     type: "function",
   },
 ];
+
+
+
+
+
 
 
 // CONFIG SPECIFIC TO THE GAMING FUNCTION

@@ -15,9 +15,11 @@ const Timer = ({ timeLimit, handleTimeUp }) => {
     }, []);
 
     useEffect(() => {
-        if (timeLeft === 0) {
-            handleTimeUp();
-        }
+      if (timeLeft === 0) {
+        handleTimeUp();
+      }
+
+      // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [timeLeft]);
 
     return <div className='mt-2'>{timeLeft} seconds left</div>;
